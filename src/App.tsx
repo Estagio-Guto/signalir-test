@@ -8,7 +8,7 @@ function App() {
 
     useEffect(() => {
         const newConnection = new HubConnectionBuilder()
-            .withUrl('https://localhost:5001/hubs/chat')
+            .withUrl('http://localhost:58196/notificationhub')
             .withAutomaticReconnect()
             .build();
 
