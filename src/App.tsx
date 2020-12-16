@@ -22,9 +22,24 @@ function App() {
                 .then((result) => {
                     console.log('Connected: ', result);
 
-                    connection.on('ReceiveMessage', (message) => {
-                        console.log(message);
+                    var cid;
+                    connection.on('ReceiveMessage', (connectionid) => {
+                        cid = connectionid;
+                        console.log(connectionid);
                     });
+
+                    connection.on("TaskSend", (task) => {
+                        console.log(task);
+                    } );
+
+                    try {
+                        connection.invoke("MapConnections", 1);
+                    } catch (error) {
+                        console.log(error)
+                    }
+                    
+
+                    //connection.invoke('MapConnections', { value: 5, Message: cid});
                 })
                 .catch((e) => console.log('Connection failed: ', e));
         }
